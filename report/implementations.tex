@@ -1,0 +1,49 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[paper=a4paper,margin=2cm]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{PT Serif}
+\setsansfont{PT Sans}
+\setmonofont{PT Mono}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\usepackage{microtype}
+
+\usepackage{setspace}
+\singlespacing
+
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\usepackage[
+    colorlinks=true,      % Включить цветные ссылки
+    linkcolor=black,      % Цвет ссылок
+    citecolor=black,      % Цвет цитат
+    urlcolor=black,       % Цвет URL
+    pdfborder={0 0 0}     % Убрать рамки вокруг ссылок
+]{hyperref}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage{fancyvrb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\setminted{
+  breaklines=true,         % Перенос длинных строк
+  breaksymbol=→,           % Символ для обозначения переноса строки
+  breaksymbolleft=␣,       % Пробел перед символом переноса
+  breakafter=,             % Где можно разрывать строки
+  breakautoindent=true,    % Авто-выравнивание после переноса
+  fontsize=\small          % Размер шрифта
+}
