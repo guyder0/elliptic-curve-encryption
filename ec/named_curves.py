@@ -28,3 +28,6 @@ def get_curve(name):
 
 def find_curve(name):
     return name in curves.keys()
+
+def registered_curves():
+    return curves.keys()

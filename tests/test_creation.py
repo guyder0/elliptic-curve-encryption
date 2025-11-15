@@ -1,12 +1,11 @@
 import pytest
 from ec.elliptic_curve import EllipticCurve
+from ec.named_curves import registered_curves
 
 
 # проверка создания именованных кривых
-@pytest.mark.parametrize('name,error_expected', [
-    ('secp256r1', False),
-    ('secp384r1', False),
-    ('secp521r1', False),
+@pytest.mark.parametrize('name,error_expected',
+    [(name, False) for name in registered_curves()] + [
     ('abc', 'Нет кривой с таким именем'),
 ], ids=['secp256r1', 'secp384r1', 'secp521r1', 'error'])
 def test_named_curve_creation(name, error_expected):
