@@ -57,3 +57,11 @@ class ECPoint:
         yr = (-y1 + s * (x1 - xr)) % p
 
         return ECPoint(self.curve, xr, yr)
+
+
+    def __sub__(self, other):
+        if not isinstance(other, ECPoint) or not self.on_curve() or not other.on_curve():
+            return NotImplemented
+
+        point = self.curve.create_point(other.x, self.curve.p - other.y)
+        return self + point

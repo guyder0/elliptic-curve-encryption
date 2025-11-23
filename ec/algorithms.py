@@ -1,16 +1,21 @@
 from .elliptic_curve import EllipticCurve
 from .elliptic_point import ECPoint
+from .named_curves import get_curve_order
+import random, time
 
-def koblitz_encoding(curve: EllipticCurve, message: str) -> ECPoint:
+def koblitz_encoding(curve: EllipticCurve, message: str | bytes) -> ECPoint:
     # это проверка что к этой кривой применим данных метод коблитза
     if curve.p % 4 != 3:
         raise Exception('Метод не применим!')
 
     # это подсчет размера так, чтобы точно не превысить допустимые границы для метода
-    message = message.encode('utf-8')
-    curve_bytes = curve.p.bit_length() // 8
-    print(len(message), curve_bytes)
-    if len(message) >= curve_bytes:
+    if isinstance(message, str):
+        message = message.encode('utf-8')
+    elif not isinstance(message, bytes):
+        raise Exception('Неверный формат message')
+    max_message_length = curve.p.bit_length() // 8 - 1
+    #print(len(message), curve_bytes)
+    if len(message) > max_message_length:
         raise Exception('Сообщение слишком длинное')
 
     a, b, p = curve.a, curve.b, curve.p
@@ -27,10 +32,10 @@ def koblitz_encoding(curve: EllipticCurve, message: str) -> ECPoint:
     raise Exception('Не удалось закодировать сообщение')
 
 
-def koblitz_decoding(curve: EllipticCurve, point: ECPoint) -> str:
+def koblitz_decoding(curve: EllipticCurve, point: ECPoint) -> bytes:
     message = point.x // 100
     byte_length = (message.bit_length() + 7) // 8
-    return message.to_bytes(byte_length, 'big').decode('utf-8')
+    return message.to_bytes(byte_length, 'big')
 
 
 def point_mult(point: ECPoint, k: int) -> ECPoint:
@@ -43,6 +48,20 @@ def point_mult(point: ECPoint, k: int) -> ECPoint:
             p = p + point
 
     return p
+
+
+def encrypt_point(curve: EllipticCurve, point: ECPoint, key: ECPoint) -> tuple[ECPoint, ECPoint]:
+    random.seed(time.time())
+    k = random.randint(0, get_curve_order(curve.curve_name) - 1)
+
+    M1 = point_mult(curve.G, k)
+    M2 = point + point_mult(key, k)
+
+    return M1, M2
+
+
+def decrypt_point(point1: ECPoint, point2: ECPoint, key: int) -> ECPoint:
+    return point2 - point_mult(point1, key)
 
 
 def write_point_to_file(filename, point):

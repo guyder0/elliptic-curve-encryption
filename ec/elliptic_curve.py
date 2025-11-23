@@ -6,6 +6,8 @@ class EllipticCurve:
     def __init__(self, name=None,  a=None, b=None, p=None, G=None):
         if name is not None and not find_curve(name):
             raise Exception('Нет кривой с таким именем')
+        if name is not None:
+            self.curve_name = name
 
         params = get_curve(name) if name else (a, b, p, G)
         if not all([p is not None for p in params]):

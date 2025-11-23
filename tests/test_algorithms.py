@@ -22,7 +22,7 @@ def test_koblitz_method(message, curve, err):
         point_from_message = koblitz_encoding(ec, message)
         assert point_from_message.on_curve()
 
-        message_from_point = koblitz_decoding(ec, point_from_message)
+        message_from_point = koblitz_decoding(ec, point_from_message).decode('utf-8')
         assert message == message_from_point
 
 
