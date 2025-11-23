@@ -1,5 +1,5 @@
 curves = {
-    'secp256r1': {
+    'secp256r1 (256-bit key)': {
         'p': 0xffffffff00000001000000000000000000000000ffffffffffffffffffffffff,
         'a': 0xffffffff00000001000000000000000000000000fffffffffffffffffffffffc,
         'b': 0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b,
@@ -7,7 +7,7 @@ curves = {
               0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5),
         'n': 0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551,
     },
-    'secp384r1': {
+    'secp384r1 (384-bit key)': {
         'p': 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffeffffffff0000000000000000ffffffff,
         'a': 0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffeffffffff0000000000000000fffffffc,
         'b': 0xb3312fa7e23ee7e4988e056be3f82d19181d9c6efe8141120314088f5013875ac656398d8a2ed19d2a85c8edd3ec2aef,
@@ -15,7 +15,7 @@ curves = {
               0x3617de4a96262c6f5d9e98bf9292dc29f8f41dbd289a147ce9da3113b5f0b8c00a60b1ce1d7e819d7a431d7c90ea0e5f),
         'n': 0xffffffffffffffffffffffffffffffffffffffffffffffffc7634d81f4372ddf581a0db248b0a77aecec196accc52973,
     },
-    'secp521r1': {
+    'secp521r1 (521-bit key)': {
         'p': 0x01ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
         'a': 0x01fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc,
         'b': 0x0051953eb9618e1c9a1f929a21a0b68540eea2da725b99b315f3b8b489918ef109e156193951ec7e937b1652c0bd3bb1bf073573df883d2c34f1ef451fd46b503f00,

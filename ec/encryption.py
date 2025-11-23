@@ -13,6 +13,9 @@ class ECC_encryption:
 
 
     def generate_key_pair(self, passphrase, private_key_filename, public_key_filename):
+        if len(passphrase) < 8:
+            raise Exception('Пароль недостаточной длины')
+
         random.seed(time.time())
         max_message_length = self.curve.p.bit_length() // 8 - 1
         curve_order = get_curve_order(self.curve_name).bit_length() // 8
