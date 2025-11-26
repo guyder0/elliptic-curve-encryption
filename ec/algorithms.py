@@ -65,7 +65,13 @@ def decrypt_point(point1: ECPoint, point2: ECPoint, key: int) -> ECPoint:
 
 
 def write_point_to_file(filename, point):
+    #curve_name = point.curve.curve_name
+    #len_curve_name = len(curve_name)
+
     with open(filename, 'wb') as f:
+        #f.write(len_curve_name.to_bytes())
+        #f.write(curve_name.encode('utf-8'))
+        f.write()
         if point.y % 2 == 0:
             f.write(b'\x00')
         else:
@@ -75,6 +81,7 @@ def write_point_to_file(filename, point):
 
 def read_point_from_file(filename, curve):
     with open(filename, 'rb') as f:
+        #len_curve_name =
         even = f.read(1) == b'\x00'
         x = int.from_bytes(f.read(), 'big')
 

@@ -489,6 +489,9 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="echoMode">
+          <enum>QLineEdit::EchoMode::Password</enum>
+         </property>
         </widget>
        </item>
        <item>

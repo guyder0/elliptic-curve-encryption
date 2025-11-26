@@ -20,7 +20,10 @@ class EllipticCurve:
 
 
     def create_point(self, x=None, y=None):
-        return ECPoint(self, x, y)
+        point = ECPoint(self, x, y)
+        if not point.on_curve():
+            raise Exception('Точка не на кривой')
+        return point
 
 
     def __repr__(self):

@@ -28,7 +28,6 @@ class ECC_encryption:
         esk_private_key = int.from_bytes(passphrase.encode('utf-8')[:curve_order])
         esk_public_key = point_mult(self.curve.G, esk_private_key)
         esk_point = koblitz_encoding(self.curve, signed)
-
         private1, private2 = encrypt_point(self.curve, esk_point, esk_public_key)
 
         write_pair_point_to_file(private_key_filename, private1, private2)
@@ -39,9 +38,12 @@ class ECC_encryption:
         curve_order = get_curve_order(self.curve_name).bit_length() // 8
         key = int.from_bytes(passphrase.encode('utf-8')[:curve_order])
 
-        private1, private2 = read_pair_point_from_file(filename, self.curve)
-        sk = decrypt_point(private1, private2, key)
-        sk = koblitz_decoding(self.curve, sk)
+        try:
+            private1, private2 = read_pair_point_from_file(filename, self.curve)
+            sk = decrypt_point(private1, private2, key)
+            sk = koblitz_decoding(self.curve, sk)
+        except Exception:
+            raise Exception('Скорее всего для этого секретного ключа выбрана не та кривая!')
 
         if sk[:3] != b'ECC':
             raise Exception('Неверная парольная фраза')
