@@ -88,10 +88,10 @@ class ECC_encryption:
         if points[0][0].curve.curve_name != self.curve_name:
             raise Exception('Файл зашифрован на другой эллиптической кривой!')
 
-        msg = ''
+        msg = b''
         for point1, point2 in points:
             point = decrypt_point(point1, point2, self.private_key)
-            msg += koblitz_decoding(self.curve, point).decode('utf-8')
+            msg += koblitz_decoding(self.curve, point)
 
         with open(target, 'w') as f:
-            f.write(msg)
+            f.write(msg.decode('utf-8'))

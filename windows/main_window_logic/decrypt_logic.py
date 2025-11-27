@@ -3,6 +3,7 @@ from ec.encryption import *
 from ec.named_curves import registered_curves
 
 from PyQt6.QtWidgets import QInputDialog, QLineEdit
+import traceback
 
 
 class DecryptManager:
@@ -43,8 +44,8 @@ class DecryptManager:
         )
         method()
         try:
-            with open(self.paths['source_file'], 'r') as f:
-                msg = f.read()
+            with open(self.paths['source_file'], 'rb') as f:
+                msg = str(f.read())
                 self.window.decrypt_fileContent.setPlainText(msg)
         except Exception as e:
             QMessageBox.warning(self.window, "Ошибка", e.args[0])
@@ -70,4 +71,5 @@ class DecryptManager:
             cypher_interface.decrypt_message(self.paths['source_file'], self.paths['output_file'])
 
         except Exception as e:
-            QMessageBox.warning(self.window, "Ошибка", str(e.args))
+            error_trace = traceback.format_exc()
+            QMessageBox.warning(self.window, "Ошибка", error_trace)

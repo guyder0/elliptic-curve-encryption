@@ -41,7 +41,7 @@ class EncryptManager:
         )
         method()
         try:
-            with open(self.paths['source_file'], 'r') as f:
+            with open(self.paths['source_file'], 'r', encoding='utf-8') as f:
                 msg = f.read()
                 self.window.encrypt_fileContent.setPlainText(msg)
         except Exception as e:
