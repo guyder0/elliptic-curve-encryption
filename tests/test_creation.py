@@ -20,7 +20,7 @@ def test_named_curve_creation(name, error_expected):
 @pytest.mark.parametrize('a,b,p,G,error_expected', [
     (-10, 21, 557, (2, 3), False),
     (4, None, 6, None, 'Не хватает параметров'),
-    (-10, 21, 557, (1, 1), 'Генератор не на кривой'),
+    (-10, 21, 557, (1, 1), 'Точка не на кривой'),
 ], ids=['correct', 'error1', 'error2'])
 def test_unnamed_curve_creation(a, b, p, G, error_expected):
     try:
@@ -49,5 +49,8 @@ def test_zero_ec_point_creation(a, b, p, G, error_expected):
 ], ids=['correct', 'error'])
 def test_ec_point_creation(a, b, p, G, x, y, on_curve):
     ec = EllipticCurve(a=a, b=b, p=p, G=G)
-    point = ec.create_point(x=x, y=y)
-    assert point.on_curve() == on_curve
+    try:
+        point = ec.create_point(x=x, y=y)
+        assert on_curve
+    except Exception as e:
+        assert not on_curve and e.args[0] == 'Точка не на кривой'

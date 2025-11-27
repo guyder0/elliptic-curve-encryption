@@ -48,7 +48,7 @@ def test_file_onepoint_work(name):
     point = curve.G.copy()
 
     write_point_to_file('temp', point)
-    point_t = read_point_from_file('temp', curve)
+    point_t = read_point_from_file('temp')
     os.remove('temp')
 
     assert [point_t.x, point_t.y] == [point.x, point.y]
@@ -61,7 +61,7 @@ def test_file_twopoints_work(name):
     point2 = point1 + point1
 
     write_pair_point_to_file('temp', point1, point2)
-    point1_t, point2_t = read_pair_point_from_file('temp', curve)
+    point1_t, point2_t = read_pair_point_from_file('temp')
     os.remove('temp')
 
     assert [point1_t.x, point1_t.y, point2_t.x, point2_t.y] == \

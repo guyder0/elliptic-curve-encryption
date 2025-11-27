@@ -45,7 +45,7 @@ class DecryptManager:
         try:
             with open(self.paths['source_file'], 'r') as f:
                 msg = f.read()
-                self.window.encrypt_fileContent.setPlainText(msg)
+                self.window.decrypt_fileContent.setPlainText(msg)
         except Exception as e:
             QMessageBox.warning(self.window, "Ошибка", e.args[0])
 

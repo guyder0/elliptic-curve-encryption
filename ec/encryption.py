@@ -8,6 +8,7 @@ class ECC_encryption:
     def __init__(self, curve_name):
         self.curve = EllipticCurve(curve_name)
         self.curve_name = curve_name
+        self.block_length = self.curve.p.bit_length() // 8 - 1
         self.private_key = None
         self.public_key = None
 
@@ -38,12 +39,11 @@ class ECC_encryption:
         curve_order = get_curve_order(self.curve_name).bit_length() // 8
         key = int.from_bytes(passphrase.encode('utf-8')[:curve_order])
 
-        try:
-            private1, private2 = read_pair_point_from_file(filename, self.curve)
-            sk = decrypt_point(private1, private2, key)
-            sk = koblitz_decoding(self.curve, sk)
-        except Exception:
-            raise Exception('Скорее всего для этого секретного ключа выбрана не та кривая!')
+        private1, private2 = read_pair_point_from_file(filename)
+        if private1.curve.curve_name != self.curve_name:
+            raise Exception('Несоответсвие выбранной кривой и записанной в файл точки')
+        sk = decrypt_point(private1, private2, key)
+        sk = koblitz_decoding(self.curve, sk)
 
         if sk[:3] != b'ECC':
             raise Exception('Неверная парольная фраза')
@@ -52,7 +52,10 @@ class ECC_encryption:
 
 
     def select_public_key(self, filename):
-        self.public_key = read_point_from_file(filename, self.curve)
+        public = read_point_from_file(filename)
+        if public.curve.curve_name != self.curve_name:
+            raise Exception('Несоответсвие выбранной кривой и записанной в файл точки')
+        self.public_key = public
 
 
     def encrypt_message(self, source, target):
@@ -60,8 +63,17 @@ class ECC_encryption:
             raise Exception('Не выбран открытый ключ')
 
         with open(source, 'r') as f:
-            point = koblitz_encoding(self.curve, f.read())
-        point1, point2 = encrypt_point(self.curve, point, self.public_key)
+            message = f.read().encode('utf-8')
+            len_message = len(message)
+            num_blocks = len_message // self.block_length
+            num_blocks += 1 if len_message % self.block_length != 0 else 0
+
+        point1 = [None] * num_blocks
+        point2 = [None] * num_blocks
+        for i in range(num_blocks):
+            block = message[i*self.block_length:(i+1)*self.block_length]
+            point = koblitz_encoding(self.curve, block)
+            point1[i], point2[i] = encrypt_point(self.curve, point, self.public_key)
         write_pair_point_to_file(target, point1, point2)
 
 
@@ -69,9 +81,17 @@ class ECC_encryption:
         if self.private_key is None:
             raise Exception('Не выбран секретный ключ')
 
-        point1, point2 = read_pair_point_from_file(source, self.curve)
-        point = decrypt_point(point1, point2, self.private_key)
-        msg = koblitz_decoding(self.curve, point).decode('utf-8')
+        points = read_pair_point_from_file(source)
+        if not isinstance(points, list):
+            points = [points]
+
+        if points[0][0].curve.curve_name != self.curve_name:
+            raise Exception('Файл зашифрован на другой эллиптической кривой!')
+
+        msg = ''
+        for point1, point2 in points:
+            point = decrypt_point(point1, point2, self.private_key)
+            msg += koblitz_decoding(self.curve, point).decode('utf-8')
 
         with open(target, 'w') as f:
             f.write(msg)

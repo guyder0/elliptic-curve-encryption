@@ -2,11 +2,13 @@ from .base_window import BaseWindow
 from .main_window_logic import *
 from .decorators import *
 from PyQt6.QtWidgets import QMessageBox
-from pathlib import Path
+import sys, os
 
 class MainWindow(BaseWindow):
     def __init__(self):
-        super().__init__('ui/untitled.ui')
+        try:    data_path = sys._MEIPASS
+        except: data_path = os.path.abspath(".")
+        super().__init__(os.path.join(data_path, 'ui/untitled.ui'))
         self.encrypt_manager = EncryptManager(self)
         self.decrypt_managet = DecryptManager(self)
         self.key_pair_manager = KeyPairManager(self)

@@ -25,7 +25,7 @@ def test_key_pairs(name, passphrase):
 @pytest.mark.parametrize('name,message',
                          [(name, message)
                           for name in registered_curves()
-                          for message in ['msg1', 'fgsfsdfdff']])
+                          for message in ['msg1', 'fgsfsdfdff' * 40]])
 def test_encrypt_decrypt_system(name, message):
     with open('tmp_open_msg', 'w+') as f: f.write(message)
     ecc_interface = ECC_encryption(name)
