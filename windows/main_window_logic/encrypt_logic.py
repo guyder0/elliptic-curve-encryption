@@ -6,7 +6,11 @@ from ec.named_curves import registered_curves
 class EncryptManager:
     def __init__(self, window):
         self.window = window
-        self.paths = {}
+        self.paths = {
+            'public_key': None,
+            'source_file': None,
+            'output_file': None,
+        }
 
         self.setup_ui()
         self.set_connections()
@@ -45,7 +49,9 @@ class EncryptManager:
                 msg = f.read()
                 self.window.encrypt_fileContent.setPlainText(msg)
         except Exception as e:
-            QMessageBox.warning(self.window, "Ошибка", e.args[0])
+            warning_box(e, self.window)
+            self.window.encrypt_chosenSourceFile.setText('Не выбран')
+            self.paths['source_file'] = None
 
 
     def choose_output_file(self):
@@ -62,6 +68,7 @@ class EncryptManager:
             cypher_interface = ECC_encryption(self.window.encrypt_chosenCurve.currentText())
             cypher_interface.select_public_key(self.paths['public_key'])
             cypher_interface.encrypt_message(self.paths['source_file'], self.paths['output_file'])
+            QMessageBox.information(self.window, 'Успешно!', f'Зашифрованный файл сохранен в {self.paths['output_file']}')
 
         except Exception as e:
-            QMessageBox.warning(self.window, "Ошибка", e.args[0])
+            warning_box(e, self.window)

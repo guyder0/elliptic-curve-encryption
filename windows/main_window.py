@@ -1,7 +1,8 @@
 from .main_window_logic import *
 from .decorators import *
-from PyQt6.QtWidgets import QMessageBox, QMainWindow
 from ui.ui import Ui_MainWindow
+
+from PyQt6.QtWidgets import QMessageBox, QMainWindow
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):

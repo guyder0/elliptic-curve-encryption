@@ -9,7 +9,11 @@ import traceback
 class DecryptManager:
     def __init__(self, window):
         self.window = window
-        self.paths = {}
+        self.paths = {
+            'private_key': None,
+            'source_file': None,
+            'output_file': None,
+        }
 
         self.setup_ui()
         self.set_connections()
@@ -48,7 +52,7 @@ class DecryptManager:
                 msg = str(f.read())
                 self.window.decrypt_fileContent.setPlainText(msg)
         except Exception as e:
-            QMessageBox.warning(self.window, "Ошибка", e.args[0])
+            warning_box(e, self.window)
 
 
     def choose_output_file(self):
@@ -69,7 +73,7 @@ class DecryptManager:
             cypher_interface = ECC_encryption(self.window.decrypt_chosenCurve.currentText())
             cypher_interface.select_private_key(passphrase, self.paths['private_key'])
             cypher_interface.decrypt_message(self.paths['source_file'], self.paths['output_file'])
+            QMessageBox.information(self.window, 'Успешно!', f'Расшифрованный файл сохранен в {self.paths['output_file']}')
 
         except Exception as e:
-            error_trace = traceback.format_exc()
-            QMessageBox.warning(self.window, "Ошибка", error_trace)
+            warning_box(e, self.window)

@@ -1,7 +1,9 @@
 from .elliptic_curve import EllipticCurve
 from .elliptic_point import ECPoint
 from .named_curves import get_curve_order
-import random, time
+
+from random import seed, randint
+from time import time
 
 def koblitz_encoding(curve: EllipticCurve, message: str | bytes) -> ECPoint:
     # это проверка что к этой кривой применим данных метод коблитза
@@ -51,8 +53,8 @@ def point_mult(point: ECPoint, k: int) -> ECPoint:
 
 
 def encrypt_point(curve: EllipticCurve, point: ECPoint, key: ECPoint) -> tuple[ECPoint, ECPoint]:
-    random.seed(time.time())
-    k = random.randint(0, get_curve_order(curve.curve_name) - 1)
+    seed(time())
+    k = randint(0, get_curve_order(curve.curve_name) - 1)
 
     M1 = point_mult(curve.G, k)
     M2 = point + point_mult(key, k)

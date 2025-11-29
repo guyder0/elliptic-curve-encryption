@@ -6,7 +6,10 @@ from ec.named_curves import registered_curves
 class KeyPairManager:
     def __init__(self, window):
         self.window = window
-        self.paths = {}
+        self.paths = {
+            'public_key': None,
+            'private_key': None,
+        }
 
         self.setup_ui()
         self.set_connections()
@@ -46,16 +49,9 @@ class KeyPairManager:
             cypher_interface = ECC_encryption(self.window.create_chosenCurve.currentText())
             passphrase = self.window.create_passphrase.text()
             cypher_interface.generate_key_pair(passphrase, self.paths['private_key'], self.paths['public_key'])
+            QMessageBox.information(self.window, 'Успешно!', f'Пара ключей успешно создана!\n'+
+                                                             f'Закрытый:{self.paths['private_key']}\n'+
+                                                             f'Открытый:{self.paths['public_key']}')
 
         except Exception as e:
-            QMessageBox.warning(self.window, "Ошибка", e.args[0])
-
-
-    def encrypt_file(self):
-        try:
-            cypher_interface = ECC_encryption(self.window.encrypt_chosenCurve.currentText)
-            cypher_interface.select_public_key(self.paths['public_key'])
-            cypher_interface.encrypt_message(self.paths['source_file'], self.paths['output_file'])
-
-        except Exception as e:
-            QMessageBox.warning(self.window, "Ошибка", e.args[0])
+            warning_box(e, self.window)

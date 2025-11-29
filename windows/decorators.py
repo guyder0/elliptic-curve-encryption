@@ -1,5 +1,7 @@
 from PyQt6.QtWidgets import QFileDialog, QInputDialog, QMessageBox
+from PyQt6.QtGui import QFont
 from pathlib import Path
+import traceback
 
 
 def choose_existing_files(parent, output_widget, path, field_name):
@@ -47,3 +49,12 @@ def check_passphrase(window, checker, handler):
         handler()
     except Exception as e:
         QMessageBox.warning(window, "Ошибка", e.args[0])
+
+
+def warning_box(exception, parent=None):
+    formatted = traceback.format_exception(type(exception), exception, exception.__traceback__)
+    msg = QMessageBox(parent, )
+    msg.setWindowTitle("Ошибка!")
+    msg.setText(''.join(formatted[-1]))
+    msg.setDetailedText(''.join(formatted))
+    msg.exec()
