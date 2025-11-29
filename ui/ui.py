@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file './ui/untitled.ui'
+# Form implementation generated from reading ui file 'ui/untitled.ui'
 #
 # Created by: PyQt6 UI code generator 6.9.1
 #
@@ -311,7 +311,10 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
         self.about_button = QtGui.QAction(parent=MainWindow)
         self.about_button.setObjectName("about_button")
+        self.instruction_button = QtGui.QAction(parent=MainWindow)
+        self.instruction_button.setObjectName("instruction_button")
         self.menu.addAction(self.about_button)
+        self.menu.addAction(self.instruction_button)
         self.menubar.addAction(self.menu.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -325,7 +328,8 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "Выбор эллиптической кривой"))
         self.encrypt_chooseOutputFile.setText(_translate("MainWindow", "Путь для сохранения"))
         self.encrypt_chooseSourceFile.setText(_translate("MainWindow", "Файл для шифрования"))
-        self.label_9.setText(_translate("MainWindow", "Просмотр шифруемого файла:"))
+        self.label_9.setText(_translate("MainWindow", "Просмотр шифруемого файла:\n"
+"(в кодировке UTF-8)"))
         self.encrypt_encryptFile.setText(_translate("MainWindow", "Зашифровать и сохранить файл"))
         self.label_8.setText(_translate("MainWindow", "Выбран файл:"))
         self.encrypt_chosenSourceFile.setText(_translate("MainWindow", "не выбрано"))
@@ -341,7 +345,8 @@ class Ui_MainWindow(object):
         self.decrypt_chooseSourceFile.setText(_translate("MainWindow", "Файл для дешифрования"))
         self.label_16.setText(_translate("MainWindow", "Выбран файл:"))
         self.decrypt_chosenSourceFile.setText(_translate("MainWindow", "не выбрано"))
-        self.label_13.setText(_translate("MainWindow", "Просмотр зашифрованного файла:"))
+        self.label_13.setText(_translate("MainWindow", "Просмотр зашифрованного файла:\n"
+"(в виде байтов)"))
         self.decrypt_chooseOutputFile.setText(_translate("MainWindow", "Путь для сохранения"))
         self.label_17.setText(_translate("MainWindow", "Выбран путь:"))
         self.decrypt_chosenOutputFile.setText(_translate("MainWindow", "не выбрано"))
@@ -358,3 +363,4 @@ class Ui_MainWindow(object):
         self.create_createKeys.setText(_translate("MainWindow", "Сохранить пару ключей"))
         self.menu.setTitle(_translate("MainWindow", "Справка"))
         self.about_button.setText(_translate("MainWindow", "О программе"))
+        self.instruction_button.setText(_translate("MainWindow", "Инструкция"))
