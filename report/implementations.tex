@@ -21,6 +21,9 @@
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
 
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\counterwithin{figure}{section}
+
 \usepackage[
     colorlinks=true,      % Включить цветные ссылки
     linkcolor=black,      % Цвет ссылок
@@ -37,13 +40,19 @@
 \usepackage{fancyvrb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 
+\usepackage{enumitem}
+\setlist[itemize]{label=$\bullet$}
+
+\usepackage{tikz}
+\usetikzlibrary{trees, positioning}
 
 \setminted{
-  breaklines=true,         % Перенос длинных строк
-  breaksymbol=→,           % Символ для обозначения переноса строки
-  breaksymbolleft=␣,       % Пробел перед символом переноса
-  breakafter=,             % Где можно разрывать строки
-  breakautoindent=true,    % Авто-выравнивание после переноса
-  fontsize=\small          % Размер шрифта
+	style=friendly,
+	breaklines=true,
+	breaksymbol=$\hookrightarrow$,
+	breakafter=,
+	breakautoindent=true,
+	fontsize=\small
 }

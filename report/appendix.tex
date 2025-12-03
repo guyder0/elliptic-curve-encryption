@@ -1,0 +1,162 @@
+\newpage
+\phantomsection\label{sec:appendix}
+\addcontentsline{toc}{section}{Приложение}
+\section*{Приложение}
+
+\noindent Структура проекта:
+
+\begin{itemize}
+	\item \textbf{./}
+	\begin{itemize}
+		\item \texttt{main.py} \dotfill \hyperref[sec:main]{\textcolor{blue}{[код]}}
+		\item \textbf{app/}
+		\begin{itemize}
+			\item \texttt{\_\_init\_\_.py} \dotfill \hyperref[sec:app_init]{\textcolor{blue}{[код]}}
+			\item \texttt{app.py} \dotfill \hyperref[sec:app_app]{\textcolor{blue}{[код]}}
+			\item \texttt{window\_manager.py} \dotfill \hyperref[sec:app_window_manager]{\textcolor{blue}{[код]}}
+		\end{itemize}
+		\item \textbf{ui/}
+		\begin{itemize}
+			\item \texttt{ui.py} \dotfill \hyperref[sec:ui_ui]{\textcolor{blue}{[код]}}
+		\end{itemize}
+		\item \textbf{windows/}
+		\begin{itemize}
+			\item \texttt{\_\_init\_\_.py} \dotfill \hyperref[sec:windows_init]{\textcolor{blue}{[код]}}
+			\item \texttt{decorators.py} \dotfill \hyperref[sec:windows_decorators]{\textcolor{blue}{[код]}}
+			\item \texttt{main\_window.py} \dotfill \hyperref[sec:windows_main_window]{\textcolor{blue}{[код]}}
+			\item \textbf{main\_window\_logic/}
+			\begin{itemize}
+				\item \texttt{\_\_init\_\_.py} \dotfill \hyperref[sec:windows_logic_init]{\textcolor{blue}{[код]}}
+				\item \texttt{decrypt\_logic.py} \dotfill \hyperref[sec:windows_logic_decrypt]{\textcolor{blue}{[код]}}
+				\item \texttt{encrypt\_logic.py} \dotfill \hyperref[sec:windows_logic_encrypt]{\textcolor{blue}{[код]}}
+				\item \texttt{key\_pair\_logic.py} \dotfill \hyperref[sec:windows_logic_key_pair]{\textcolor{blue}{[код]}}
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{ec/}
+		\begin{itemize}
+			\item \texttt{algorithms.py} \dotfill \hyperref[sec:ec_algorithms]{\textcolor{blue}{[код]}}
+			\item \texttt{elliptic\_curve.py} \dotfill \hyperref[sec:ec_elliptic_curve]{\textcolor{blue}{[код]}}
+			\item \texttt{elliptic\_point.py} \dotfill \hyperref[sec:ec_elliptic_point]{\textcolor{blue}{[код]}}
+			\item \texttt{encryption.py} \dotfill \hyperref[sec:ec_encryption]{\textcolor{blue}{[код]}}
+			\item \texttt{named\_curves.py} \dotfill \hyperref[sec:ec_named_curves]{\textcolor{blue}{[код]}}
+		\end{itemize}
+		\item \textbf{tests/}
+		\begin{itemize}
+			\item \texttt{test\_algorithms.py} \dotfill \hyperref[sec:tests_algorithms]{\textcolor{blue}{[код]}}
+			\item \texttt{test\_creation.py} \dotfill \hyperref[sec:tests_creation]{\textcolor{blue}{[код]}}
+			\item \texttt{test\_encrypt\_decrypt\_system.py} \dotfill \hyperref[sec:tests_encrypt_decrypt_system]{\textcolor{blue}{[код]}}
+			\item \texttt{test\_encryption.py} \dotfill \hyperref[sec:tests_encryption]{\textcolor{blue}{[код]}}
+			\item \texttt{test\_operations.py} \dotfill \hyperref[sec:tests_operations]{\textcolor{blue}{[код]}}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\phantomsection\label{sec:main}
+\subsection*{./main.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../main.py}
+
+\phantomsection\label{sec:app_init}
+\subsection*{./app/\_\_init\_\_.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../app/__init__.py}
+
+\phantomsection\label{sec:app_app}
+\subsection*{./app/app.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../app/app.py}
+
+\phantomsection\label{sec:app_window_manager}
+\subsection*{./app/window\_manager.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../app/window_manager.py}
+
+\phantomsection\label{sec:ui_ui}
+\subsection*{./ui/ui.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../ui/ui.py}
+
+\phantomsection\label{sec:windows_init}
+\subsection*{./windows/\_\_init\_\_.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/__init__.py}
+
+\phantomsection\label{sec:windows_decorators}
+\subsection*{./windows/decorators.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/decorators.py}
+
+\phantomsection\label{sec:windows_main_window}
+\subsection*{./windows/main\_window.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/main_window.py}
+
+\phantomsection\label{sec:windows_logic_init}
+\subsection*{./windows/main\_window\_logic/\_\_init\_\_.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/main_window_logic/__init__.py}
+
+\phantomsection\label{sec:windows_logic_decrypt}
+\subsection*{./windows/main\_window\_logic/decrypt\_logic.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/main_window_logic/decrypt_logic.py}
+
+\phantomsection\label{sec:windows_logic_encrypt}
+\subsection*{./windows/main\_window\_logic/encrypt\_logic.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/main_window_logic/encrypt_logic.py}
+
+\phantomsection\label{sec:windows_logic_key_pair}
+\subsection*{./windows/main\_window\_logic/key\_pair\_logic.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../windows/main_window_logic/key_pair_logic.py}
+
+\phantomsection\label{sec:ec_algorithms}
+\subsection*{./ec/algorithms.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../ec/algorithms.py}
+
+\phantomsection\label{sec:ec_elliptic_curve}
+\subsection*{./ec/elliptic\_curve.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../ec/elliptic_curve.py}
+
+\phantomsection\label{sec:ec_elliptic_point}
+\subsection*{./ec/elliptic\_point.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../ec/elliptic_point.py}
+
+\phantomsection\label{sec:ec_encryption}
+\subsection*{./ec/encryption.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../ec/encryption.py}
+
+\phantomsection\label{sec:ec_named_curves}
+\subsection*{./ec/named\_curves.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../ec/named_curves.py}
+
+\phantomsection\label{sec:tests_algorithms}
+\subsection*{./tests/test\_algorithms.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../tests/test_algorithms.py}
+
+\phantomsection\label{sec:tests_creation}
+\subsection*{./tests/test\_creation.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../tests/test_creation.py}
+
+\phantomsection\label{sec:tests_encrypt_decrypt_system}
+\subsection*{./tests/test\_encrypt\_decrypt\_system.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../tests/test_encrypt_decrypt_system.py}
+
+\phantomsection\label{sec:tests_encryption}
+\subsection*{./tests/test\_encryption.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../tests/test_encryption.py}
+
+\phantomsection\label{sec:tests_operations}
+\subsection*{./tests/test\_operations.py}
+\noindent\hyperref[sec:appendix]{\textcolor{blue}{[вернуться к структуре]}}
+\inputminted{python}{../tests/test_operations.py}
